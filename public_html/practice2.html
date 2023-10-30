@@ -1,0 +1,57 @@
+<html>
+<head>
+    <title>Colorful Paragraph</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #container {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #000;
+            display: inline-block;
+        }
+        #custom-paragraph {
+            padding: 20px;
+            border: 1px solid #000;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Customize Your Paragraph</h1>
+    <div>
+        <label for="rgbColor">Enter RGB values (e.g., 255, 0, 0):</label>
+        <input type="text" id="rgbColor" placeholder="e.g., 255, 0, 0">
+        <label for="borderWidth">Border Width (in pixels):</label>
+        <input type="number" id="borderWidth" min="0" placeholder="0">
+        <button onclick="updateParagraph()">Apply</button>
+    </div>
+    <div id="container">
+        <p id="custom-paragraph">New York City rats carry pathogens that can cause diarrhea, vomiting, and fever in humans – especially in children. The pathogens they carry include bacteria such as Clostridium difficile (C. diff), Salmonella, E. coli, and Leptospira. Bartonella bacteria cause cat scratch disease, trench fever, and Carron disease. These bacteria may be spread through contact with rat saliva, urine or feces. Rats can carry disease-causing viruses such as sapoviruses, cardioviruses, kobuviruses, parechoviruses, rotaviruses, hepaciviruses, and Seoul virus. Rats may carry fleas that are vectors of diseases such as bubonic plague, typhus, and spotted fever. In addition, some people have an allergic reaction to the presence of rodent hair, urine or feces.</p>
+    </div>
+
+    <script>
+        function updateParagraph() {
+            const rgbColorInput = document.getElementById("rgbColor").value;
+            const borderWidthInput = document.getElementById("borderWidth").value;
+            const paragraph = document.getElementById("custom-paragraph");
+
+            // Validate the RGB input and split into components
+            const rgbValues = rgbColorInput.split(",").map(value => parseInt(value));
+            if (rgbValues.length === 3 && !rgbValues.some(isNaN)) {
+                const [r, g, b] = rgbValues;
+                const borderWidth = parseInt(borderWidthInput) || 0;
+
+                // Apply the custom styles
+                paragraph.style.color = `rgb(${r}, ${g}, ${b})`;
+                paragraph.style.borderColor = `rgb(${r}, ${g}, ${b})`;
+                paragraph.style.borderWidth = `${borderWidth}px`;
+            } else {
+                alert("Please enter valid RGB values (e.g., 255, 0, 0) and a numeric border width.");
+            }
+        }
+    </script>
+</body>
+</html>
